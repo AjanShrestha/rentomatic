@@ -8,3 +8,13 @@ class Room:
         self.price = price
         self.longitude = longitude
         self.latitude = latitude
+
+    @classmethod
+    def from_dict(cls, adict):
+        return cls(
+            code=adict["code"],
+            size=adict["size"],
+            price=adict["price"],
+            longitude=adict["longitude"],
+            latitude=adict["latitude"],
+        )
