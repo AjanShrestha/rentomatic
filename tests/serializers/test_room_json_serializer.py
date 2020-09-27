@@ -10,7 +10,11 @@ def test_serialize_domain_room():
     code = uuid.uuid4()
 
     room = r.Room(
-        code, size=200, price=10, longitude=-0.09998975, latitude=51.75436293
+        code,
+        size=200,
+        price=10,
+        longitude=-0.09998975,
+        latitude=51.75436293,
     )
     expected_json = """
         {{
