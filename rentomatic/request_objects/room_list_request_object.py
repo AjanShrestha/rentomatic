@@ -2,8 +2,8 @@
 
 
 class RoomListRequestObject:
-    def __init__(self):
-        self.filters = None
+    def __init__(self, filters=None):
+        self.filters = filters
 
     @classmethod
     def from_dict(cls, adict):
