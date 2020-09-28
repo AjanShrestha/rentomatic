@@ -21,3 +21,10 @@ def test_build_room_list_request_object_with_empty_filters():
 
     assert request.filters == {}
     assert bool(request) is True
+
+
+def test_build_room_list_request_object_from_dict_with_empty_filters():
+    request = req.RoomListRequestObject.from_dict({"filters": {}})
+
+    assert request.filters == {}
+    assert bool(request) is True
