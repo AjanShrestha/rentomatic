@@ -6,6 +6,10 @@ class ResponseFailure:
         self.type = type_
         self.message = message
 
+    @property
+    def value(self):
+        return {"type": self.type, "message": self.message}
+
     def __bool__(self):
         return False
 
