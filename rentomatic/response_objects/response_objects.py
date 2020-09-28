@@ -35,6 +35,10 @@ class ResponseFailure:
     def build_resource_error(cls, message=None):
         return cls(cls.RESOURCE_ERROR, message)
 
+    @classmethod
+    def build_parameters_error(cls, message=None):
+        return cls(cls.PARAMETERS_ERROR, message)
+
 
 class ResponseSuccess:
     SUCCESS = "Success"
