@@ -2,6 +2,9 @@
 
 
 class RoomListRequestObject:
+    def __init__(self):
+        self.filters = None
+
     @classmethod
     def from_dict(cls, adict):
         return cls()
