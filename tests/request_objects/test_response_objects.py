@@ -2,6 +2,7 @@
 import pytest
 
 from rentomatic.response_objects import response_objects as res
+from rentomatic.request_objects import room_list_request_object as req
 
 
 @pytest.fixture
@@ -60,3 +61,12 @@ def test_response_failure_initialisation_with_exception(response_type):
     assert bool(response) is False
     assert response.type == response_type
     assert response.message == "Exception: Just an error message"
+
+
+def test_response_failire_from_empty_invalid_request_object():
+    response = res.ResponseFailure.build_from_invalid_request_object(
+        req.InvalidRequestObject()
+    )
+
+    assert bool(response) is False
+    assert response.type == res.ResponseFailure.PARAMETERS_ERROR
