@@ -7,5 +7,10 @@ class MemRepo:
     def __init__(self, data):
         self.data = data
 
-    def list(self):
-        return [r.Room.from_dict(i) for i in self.data]
+    def list(self, filters=None):
+        result = [r.Room.from_dict(i) for i in self.data]
+
+        if filters is None:
+            return result
+
+        return result
