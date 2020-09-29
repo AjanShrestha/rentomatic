@@ -57,7 +57,7 @@ def test_room_list_without_parameters(domain_rooms):
     response = room_list_use_case.execute(request)
 
     assert bool(response) is True
-    repo.list.assert_called_with()
+    repo.list.assert_called_with(filters=None)
     assert response.value == domain_rooms
 
 
