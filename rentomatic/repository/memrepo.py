@@ -14,5 +14,9 @@ class MemRepo:
             return result
         elif "code__eq" in filters:
             result = [r for r in result if r.code == filters["code__eq"]]
+        elif "price__eq" in filters:
+            result = [
+                r for r in result if r.price == int(filters["price__eq"])
+            ]
 
         return result
