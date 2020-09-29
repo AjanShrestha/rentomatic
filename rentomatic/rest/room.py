@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 
-from flask import Blueprint, Response
+from flask import Blueprint, request, Response
 
 from rentomatic.repository import memrepo as mr
 from rentomatic.use_cases import room_list_use_case as uc
@@ -41,6 +41,11 @@ def room():
     qrystr_params = {
         "filters": {},
     }
+
+    for arg, values in request.args.items():
+        if arg.startswith("filter_"):
+            qrystr_params["filters"][arg.replace("filter_", "")] = values
+
     request_object = req.RoomListRequestObject.from_dict(qrystr_params)
 
     repo = mr.MemRepo([room1, room2, room3])
