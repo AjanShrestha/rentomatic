@@ -12,5 +12,7 @@ class MemRepo:
 
         if filters is None:
             return result
+        elif "code__eq" in filters:
+            result = [r for r in result if r.code == filters["code__eq"]]
 
         return result
