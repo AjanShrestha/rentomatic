@@ -7,6 +7,7 @@ import pytest
 from rentomatic.domain import room as r
 from rentomatic.use_cases import room_list_use_case as uc
 from rentomatic.request_objects import room_list_request_object as req
+from rentomatic.response_objects import response_objects as res
 
 
 @pytest.fixture
@@ -58,3 +59,20 @@ def test_room_list_without_parameters(domain_rooms):
     assert bool(response) is True
     repo.list.assert_called_with()
     assert response.value == domain_rooms
+
+
+def test_room_list_with_filters(domain_rooms):
+    repo = mock.Mock()
+    repo.list.return_value = domain_rooms
+
+    room_list_use_case = uc.RoomListUseCase(repo)
+    qry_filters = {"code__eq": 5}
+    request_object = req.RoomListRequestObject.from_dict(
+        {"filters": qry_filters}
+    )
+
+    response_object = room_list_use_case.execute(request_object)
+
+    assert bool(response_object) is True
+    repo.list.assert_called_with(filters=qry_filters)
+    assert response_object.value == domain_rooms

@@ -6,6 +6,6 @@ class RoomListUseCase:
     def __init__(self, repo):
         self.repo = repo
 
-    def execute(self, request):
-        rooms = self.repo.list()
+    def execute(self, request_object):
+        rooms = self.repo.list(filters=request_object.filters)
         return res.ResponseSuccess(rooms)
