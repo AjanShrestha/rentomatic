@@ -12,15 +12,15 @@ class MemRepo:
 
         if filters is None:
             return result
-        elif "code__eq" in filters:
+        if "code__eq" in filters:
             result = [r for r in result if r.code == filters["code__eq"]]
-        elif "price__eq" in filters:
+        if "price__eq" in filters:
             result = [
                 r for r in result if r.price == int(filters["price__eq"])
             ]
-        elif "price__lt" in filters:
+        if "price__lt" in filters:
             result = [r for r in result if r.price < int(filters["price__lt"])]
-        elif "price__gt" in filters:
+        if "price__gt" in filters:
             result = [r for r in result if r.price > int(filters["price__gt"])]
 
         return result
