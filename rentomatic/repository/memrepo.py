@@ -20,5 +20,7 @@ class MemRepo:
             ]
         elif "price__lt" in filters:
             result = [r for r in result if r.price < int(filters["price__lt"])]
+        elif "price__gt" in filters:
+            result = [r for r in result if r.price > int(filters["price__gt"])]
 
         return result
