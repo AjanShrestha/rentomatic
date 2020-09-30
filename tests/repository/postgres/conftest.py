@@ -33,10 +33,10 @@ def pg_engine(docker_ip, docker_services, docker_setup):
     )
 
     conn_str = "postgresql+psycopg2://{}:{}@{}/{}".format(
-        docker_services["postgres"]["user"],
-        docker_services["postgres"]["password"],
-        docker_services["postgres"]["host"],
-        docker_services["postgres"]["dbname"],
+        docker_setup["postgres"]["user"],
+        docker_setup["postgres"]["password"],
+        docker_setup["postgres"]["host"],
+        docker_setup["postgres"]["dbname"],
     )
     engine = sqlalchemy.create_engine(conn_str)
     sqlalchemy_utils.create_database(engine.url)
