@@ -45,8 +45,8 @@ class PostgresRepo:
         if "price__eq" in filters:
             query = query.filter(Room.price == filters["price__eq"])
 
-        if "price__let" in filters:
-            query = query.filter(Room.price < filters["price__let"])
+        if "price__lt" in filters:
+            query = query.filter(Room.price < filters["price__lt"])
 
         if "price__gt" in filters:
             query = query.filter(Room.price > filters["price__gt"])
