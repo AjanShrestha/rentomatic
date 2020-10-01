@@ -3,7 +3,7 @@ import json
 
 from flask import Blueprint, request, Response
 
-from rentomatic.repository import postgres_repo as pr
+from rentomatic.repository import mongorepo as mr
 from rentomatic.use_cases import room_list_use_case as uc
 from rentomatic.serializers import room_json_serializer as ser
 from rentomatic.request_objects import room_list_request_object as req
@@ -21,7 +21,7 @@ STATUS_CODES = {
 
 connection_data = {
     "dbname": "rentomaticdb",
-    "user": "postgres",
+    "user": "root",
     "password": "rentomaticdb",
     "host": "localhost",
 }
@@ -39,7 +39,7 @@ def room():
 
     request_object = req.RoomListRequestObject.from_dict(qrystr_params)
 
-    repo = pr.PostgresRepo(connection_data)
+    repo = mr.MongoRepo(connection_data)
     use_case = uc.RoomListUseCase(repo)
     response = use_case.execute(request_object)
 

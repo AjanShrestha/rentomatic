@@ -87,8 +87,15 @@ dist: clean ## builds source and wheel package
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
 
-run-container:
+run-pg-container:
 	docker run --name rentomatic -e POSTGRES_PASSWORD=rentomaticdb -p 5432:5432 -d postgres
 
-link-container:
+link-pg-container:
 	docker run -it --rm --link rentomatic:rentomatic postgres psql -h rentomatic -U postgres
+
+run-mongo-container:
+	docker run --name rentomatic -e MONGO_INITDB_ROOT_USERNAME=root \
+	-e MONGO_INITDB_ROOT_PASSWORD=rentomaticdb -p 27017:27017 -d mongo
+link-mongo-container:
+	docker exec -it rentomatic mongo --port 27017 -u "root" -p "rentomaticdb" \
+	--authenticationDatabase "admin"
